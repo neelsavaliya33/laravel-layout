@@ -3,7 +3,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
     <meta name="author" content="Creative Tim">
-    <title>{{isset($title) ? $title : env('APP_NAME','')}}</title>
+    <title>{{ isset($title) ? $title : env('APP_NAME', '') }}</title>
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('main/assets/img/brand/favicon.png') }}" type="image/png">
     <!-- Fonts -->
@@ -18,7 +18,7 @@
 </head>
 
 <body class="bg-default">
-    @if (isset($sidebar) && $sidebar)
+    @if (!isset($noSidebar) || !$noSidebar)
         <!-- Sidenav -->
         <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white"
             id="sidenav-main">
@@ -549,8 +549,9 @@
                 </footer>
             </div>
         </div>
+    @else
+        @yield('content')
     @endif
-    @yield('content')
     <!-- Main content -->
     <!-- Argon Scripts -->
     <!-- Core -->
