@@ -12,6 +12,14 @@ class Login extends Component
         'email' => "required",
         'password' => "required"
     ];
+
+    public function FunctionName()
+    {
+        if(auth()->check()){
+            return redirect(route('dashboard'));
+        }
+    }
+
     public function render()
     {
         return view('livewire.login')
@@ -30,6 +38,6 @@ class Login extends Component
                 'login' => "Invalid credential"
             ]);
         }
-        return redirect('/');
+        return redirect(route('dashboard'));
     }
 }

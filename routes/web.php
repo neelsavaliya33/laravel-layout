@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\Login;
 use App\Http\Livewire\Register;
 use Illuminate\Support\Facades\Route;
@@ -16,11 +18,11 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::get('/login', Login::class)->name('login');
+Route::get('/register', Register::class)->name('register');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/', Dashboard::class)->name('dashboard');
 });
-Auth::routes(['verify' => true]);
-Route::get('/login',Login::class)->name('login');
-Route::get('/register',Register::class)->name('register');
-
-

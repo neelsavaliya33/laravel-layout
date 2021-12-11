@@ -13,14 +13,14 @@ class Register extends Component
     public $name, $email, $password, $password_confirmation;
     protected $rules = [
         'name' => "required",
-        "email" => ["required", "email","unique:users"],
+        "email" => ["required", "email", "unique:users"],
         "password" => ["required", "min:8", 'confirmed']
     ];
 
     public function mount()
     {
         if (auth()->check())
-            return redirect('/');
+            return redirect(route('dashboard'));
     }
     public function render()
     {
@@ -36,14 +36,11 @@ class Register extends Component
     public function submit()
     {
         $validatedData = $this->validate();
-        $user = User::create([
+        User::create([
             'name' => $validatedData["name"],
             'email' => $validatedData["email"],
             'password' => bcrypt($validatedData["password"])
         ]);
-        event(new Registered($user));
-
-
         return redirect(route('login'));
     }
 }
