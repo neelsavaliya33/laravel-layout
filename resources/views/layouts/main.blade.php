@@ -15,6 +15,7 @@
     <!-- Argon CSS -->
     <link rel="stylesheet" href="{{ asset('main/assets/css/argon.css') }}" type="text/css">
     @livewireStyles
+    @powerGridStyles
 </head>
 
 <body class="bg-default">
@@ -560,9 +561,10 @@
     <script src="{{ asset('main/assets/vendor/js-cookie/js.cookie.js') }}"></script>
     <script src="{{ asset('main/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js') }}"></script>
     <script src="{{ asset('main/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js') }}"></script>
-    @livewireScripts
     <!-- Argon JS -->
     <script src="{{ asset('main/assets/js/argon.js') }}"></script>
+    @livewireScripts
+    @powerGridScripts
 </body>
 
 </html>
